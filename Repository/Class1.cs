@@ -1,4 +1,4 @@
-﻿namespace Repository
+﻿namespace Services
 {
     public class Class1
     {
