@@ -1,6 +1,9 @@
 using Infrastructure;
 using Infrastructure.AddApplicationSettings;
 using Infrastructure.Middleware;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +12,27 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Mi API",
+        Version = "v1",
+        Description = "API para gestionar recursos de manera eficiente.",
+        Contact = new OpenApiContact
+        {
+            Name = "Soporte Técnico",
+            Email = "soporte@miapi.com",
+            Url = new Uri("https://miapi.com/contacto")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "MIT",
+            Url = new Uri("https://opensource.org/licenses/MIT")
+        }
+    });
+
+});
 
 builder.Services.AddInfrastructureSettings(builder.Configuration);
 
