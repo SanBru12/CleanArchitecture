@@ -1,4 +1,5 @@
-﻿using Infrastructure.ApplicationSettings.Settings;
+﻿using Infrastructure.ApplicationSettings.Extensions;
+using Infrastructure.ApplicationSettings.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +14,8 @@ namespace Infrastructure.AddApplicationSettings
 
             services.Configure<ConnectionStringsSettings>(
                 configuration.GetSection(ConnectionStringsSettings.SectionName));
+
+            services.AddSingleton<ProgramExtension>();
 
             return services;
         }

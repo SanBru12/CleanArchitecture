@@ -1,6 +1,6 @@
 ﻿namespace Application
 {
-    public class UseCase
+    public class Startup
     {
 
     }
