@@ -2,7 +2,7 @@
 
 namespace Data.Models
 {
-    public class AuditLog : AuditableEntity
+    public class AuditLog
     {
         public int Id { get; set; }
         public string? TableId { get; set; } = "";

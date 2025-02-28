@@ -1,6 +1,5 @@
 using Infrastructure;
 using Infrastructure.Middleware;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);

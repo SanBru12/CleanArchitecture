@@ -6,23 +6,23 @@ using System.Security.Claims;
 using Models.Entity;
 using Data.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Threading;
+using Models.Models;
 
-namespace Infrastructure.Application.Data
+namespace Infrastructure.DataAccess
 {
     public class AppDbContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AppDbContext( DbContextOptions<AppDbContext> options,
+        public AppDbContext(DbContextOptions<AppDbContext> options,
             IHttpContextAccessor httpContextAccessor) : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
         }
 
         // DbSets para las entidades personalizadas
-
         public DbSet<AuditLog> AuditLogs { get; set; } = null!;
+        public DbSet<ErrorLog> ErrorLogs { get; set; } = null!;
         public DbSet<Tenant> Tenants { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -30,7 +30,7 @@ namespace Infrastructure.Application.Data
             base.OnModelCreating(builder);
 
             builder.Entity<AuditLog>().ToTable("AuditLogs");
-
+            builder.Entity<ErrorLog>().ToTable("ErrorLogs");
             builder.Entity<Tenant>().ToTable("Tenants");
 
             // Configuración para Identity
@@ -92,6 +92,7 @@ namespace Infrastructure.Application.Data
         private void SaveAuditableEntity()
         {
             Guid? userGuid = null;
+
             if (_httpContextAccessor?.HttpContext?.User?.Identity?.IsAuthenticated == true)
             {
                 var userIdClaim = _httpContextAccessor.HttpContext.User.Claims
@@ -121,8 +122,6 @@ namespace Infrastructure.Application.Data
                     entry.Entity.UpdatedBy = userGuid;
                 }
             }
-
-  
         }
 
         private void TrackChanges()
@@ -131,7 +130,14 @@ namespace Infrastructure.Application.Data
 
             foreach (var entry in ChangeTracker.Entries())
             {
-                if (entry.Entity is AuditLog) continue;
+                var tiposExcluidos = new[] 
+                { 
+                    typeof(AuditLog), 
+                    typeof(ErrorLog) 
+                };
+
+                if (tiposExcluidos.Contains(entry.Entity.GetType()))
+                    continue;
 
                 var auditLog = new AuditLog
                 {

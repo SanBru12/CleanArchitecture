@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.ApplicationSettings.Extensions;
-using Data;
+using Infrastructure.DataAccess;
+using Application;
+using Infrastructure.Services;
 
 namespace Infrastructure
 {
@@ -16,7 +18,12 @@ namespace Infrastructure
 
             services.AddApplicationDbConnection(programExtension.SqlConnection);
 
+            services.AddConfigMediatR();
+            services.AddServiceSettings();
+
             return services;
         }
+
+
     }
 }
