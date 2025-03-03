@@ -5,6 +5,7 @@ using Infrastructure.ApplicationSettings.Extensions;
 using Infrastructure.DataAccess;
 using Application;
 using Infrastructure.Services;
+using Api.Infrastructure.AutoMapper;
 
 namespace Infrastructure
 {
@@ -19,7 +20,10 @@ namespace Infrastructure
             services.AddApplicationDbConnection(programExtension.SqlConnection);
 
             services.AddConfigMediatR();
+
             services.AddServiceSettings();
+
+            services.AddAutoMapper(typeof(AutoMapperProfile));
 
             return services;
         }

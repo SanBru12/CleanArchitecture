@@ -1,14 +1,10 @@
-﻿using Application.Interfaces;
-using Infrastructure.DataAccess;
+﻿using Infrastructure.DataAccess;
 using Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Models.Models;
 using Models.Responses;
-using System;
 using System.Net;
-using System.Net.Http;
 using System.Text.Json;
 
 namespace Infrastructure.Middleware
@@ -59,23 +55,31 @@ namespace Infrastructure.Middleware
 
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            var _context = context.RequestServices.GetRequiredService<AppDbContext>();
-
-            ErrorLog errorLog = new()
+            using var scope = context.RequestServices.CreateScope();
+            try
             {
-                Type = exception.GetType().ToString(),
-                Message = exception.Message,
-                StackTrace = exception.StackTrace,
-                Source = exception.Source,
-                TargetSite = exception.TargetSite?.ToString(),
-                InnerException = exception.InnerException?.ToString(),
-                CreateDate = DateTime.UtcNow,
-                Path = context.Request.Path,
-                Method = context.Request.Method
-            };
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-            await _context.AddAsync(errorLog);
-            await _context.SaveChangesAsync();
+                ErrorLog errorLog = new()
+                {
+                    Type = exception.GetType().ToString(),
+                    Message = exception.Message,
+                    StackTrace = exception.StackTrace,
+                    Source = exception.Source,
+                    TargetSite = exception.TargetSite?.ToString(),
+                    InnerException = exception.InnerException?.ToString(),
+                    CreateDate = DateTime.UtcNow,
+                    Path = context.Request.Path,
+                    Method = context.Request.Method
+                };
+
+                await dbContext.AddAsync(errorLog);
+                await dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error logging exception: {ex.Message}");
+            }
 
             var responseContext = context.Response;
             responseContext.ContentType = "application/json";
@@ -84,7 +88,7 @@ namespace Infrastructure.Middleware
             var response = new ErrorResponse(500, exception.Message, "Ocurrio un error interno en el servidor.");
             var result = JsonSerializer.Serialize(response);
             await context.Response.WriteAsync(result);
-
         }
     }
 }
+

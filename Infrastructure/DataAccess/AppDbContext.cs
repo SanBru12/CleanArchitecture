@@ -119,7 +119,7 @@ namespace Infrastructure.DataAccess
                 if (entry.State == EntityState.Modified)
                 {
                     entry.Entity.UpdatedAt = DateTime.UtcNow;
-                    entry.Entity.UpdatedBy = userGuid;
+                    entry.Entity.UpdatedBy ??= userGuid ?? Guid.Empty;
                 }
             }
         }
@@ -130,10 +130,10 @@ namespace Infrastructure.DataAccess
 
             foreach (var entry in ChangeTracker.Entries())
             {
-                var tiposExcluidos = new[] 
-                { 
-                    typeof(AuditLog), 
-                    typeof(ErrorLog) 
+                var tiposExcluidos = new[]
+                {
+                    typeof(AuditLog),
+                    typeof(ErrorLog)
                 };
 
                 if (tiposExcluidos.Contains(entry.Entity.GetType()))

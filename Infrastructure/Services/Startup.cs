@@ -11,7 +11,7 @@ namespace Infrastructure.Services
         public static IServiceCollection AddServiceSettings(this IServiceCollection services)
         {
             // agregamos el servicio de repositorio dinamico
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
             // agregar aca el resto de servicios
 

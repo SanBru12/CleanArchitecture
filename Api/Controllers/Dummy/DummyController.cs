@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using Models.Responses;
 using System.Net;
 
-namespace Api.Controllers
+namespace Api.Controllers.Dummy
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -45,7 +45,7 @@ namespace Api.Controllers
             return Ok($"{connection.State}");
         }
 
-      
-       
+
+
     }
 }
