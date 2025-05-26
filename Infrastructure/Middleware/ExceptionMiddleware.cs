@@ -1,5 +1,5 @@
-﻿using Infrastructure.DataAccess;
-using Infrastructure.Exceptions;
+﻿using Infrastructure.Exceptions;
+using Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Models.Models;
@@ -58,7 +58,7 @@ namespace Infrastructure.Middleware
             using var scope = context.RequestServices.CreateScope();
             try
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
                 ErrorLog errorLog = new()
                 {

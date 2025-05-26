@@ -14,24 +14,7 @@ namespace Api.Controllers.Identity
         private readonly IUser _userServices = user;
 
 
-        /// <summary>
-        /// Crea un nuevo usuaro
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="ErrorResponse"></exception>
-        [HttpGet("Create")]
-        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.InternalServerError)]
-        public async Task<ActionResult> CreateAsync()
-        {
-
-            
-
-            await _userServices.CreatAsync();
-
-            Ok();
-
-        }
+      
 
 
 

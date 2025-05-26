@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Infrastructure.Persistence.Context;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.DataAccess
+namespace Infrastructure.Persistence
 {
     public static class Startup
     {
@@ -11,10 +12,10 @@ namespace Infrastructure.DataAccess
             if (string.IsNullOrEmpty(SqlConnection))
                 throw new ArgumentNullException(nameof(SqlConnection));
 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(SqlConnection));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(SqlConnection));
 
             services.AddIdentity<IdentityUser<Guid>, IdentityRole<Guid>>()
-                   .AddEntityFrameworkStores<AppDbContext>()
+                   .AddEntityFrameworkStores<ApplicationDbContext>()
                    .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Application.Handlers.Tenants
 {
-    internal class SearchTenantHandler
+    public class SearchTenantHandler
     {
+
     }
 }

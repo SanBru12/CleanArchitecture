@@ -1,14 +1,14 @@
 ﻿using Application.Interfaces.Identity;
-using Infrastructure.DataAccess;
 using Infrastructure.Exceptions;
+using Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Services.Identity
 {
-    public class UserServices(UserManager<IdentityUser> userManager, AppDbContext appDbContext) : IUser
+    public class UserServices(UserManager<IdentityUser> userManager, ApplicationDbContext appDbContext) : IUser
     {
         private readonly UserManager<IdentityUser> _userManager = userManager;
-        private readonly AppDbContext _context = appDbContext;
+        private readonly ApplicationDbContext _context = appDbContext;
 
         public async Task<IdentityUser> GetByIdAsync(string Id)
         {

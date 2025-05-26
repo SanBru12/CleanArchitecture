@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNetCore.Identity;
 using Models.Dtos.Identity.Roles;
 
 namespace Application.Interfaces.Identity

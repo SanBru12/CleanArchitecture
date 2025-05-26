@@ -2,10 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.ApplicationSettings.Extensions;
-using Infrastructure.DataAccess;
 using Application;
 using Infrastructure.Services;
 using Api.Infrastructure.AutoMapper;
+using Infrastructure.Persistencia;
 
 namespace Infrastructure
 {
