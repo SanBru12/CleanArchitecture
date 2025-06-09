@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Domain.Common;
+using Domain.Common.Contracts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Security.Claims;
-using Domain.Common;
 
 namespace Infrastructure.Persistence.Extensions
 {
@@ -10,18 +11,29 @@ namespace Infrastructure.Persistence.Extensions
     {
         public static void SaveAuditableMetadata(ChangeTracker changeTracker, Guid? userGuid)
         {
-            foreach (var entry in changeTracker.Entries<AuditableEntity>())
+            foreach (var entry in changeTracker.Entries<IAuditableEntity>())
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Entity.CreatedAt ??= DateTime.UtcNow;
-                    entry.Entity.CreatedBy ??= userGuid ?? Guid.Empty;
+                    entry.Entity.CreatedBy = userGuid ?? Guid.Empty;
+                    entry.Entity.LastModifiedOn = DateTime.UtcNow;
+                    entry.Entity.LastModifiedBy = userGuid ?? Guid.Empty;
                 }
 
                 if (entry.State == EntityState.Modified)
                 {
-                    entry.Entity.UpdatedAt = DateTime.UtcNow;
-                    entry.Entity.UpdatedBy ??= userGuid ?? Guid.Empty;
+                    entry.Entity.LastModifiedOn = DateTime.UtcNow;
+                    entry.Entity.LastModifiedBy = userGuid ?? Guid.Empty;
+                }
+            }
+
+            foreach (var entry in changeTracker.Entries<ISoftDelete>())
+            {
+                if (entry.State == EntityState.Deleted)
+                {
+                    entry.State = EntityState.Modified;
+                    entry.Entity.DeletedOn = DateTime.UtcNow;
+                    entry.Entity.DeletedBy = userGuid ?? Guid.Empty;
                 }
             }
         }

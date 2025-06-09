@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Common.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Extensions
@@ -16,20 +17,19 @@ namespace Infrastructure.Persistence.Extensions
 
                 entity.Property("CreatedBy")
                       .HasColumnType("uniqueidentifier")
-                      .IsRequired(false);
+                      .IsRequired();
 
-                entity.Property("UpdatedBy")
+                entity.Property("LastModifiedBy")
                       .HasColumnType("uniqueidentifier")
-                      .IsRequired(false);
+                      .IsRequired();
 
-                entity.Property("CreatedAt")
+                entity.Property("CreatedOn")
                       .HasColumnType("datetime2")
                       .HasDefaultValueSql("GETUTCDATE()");
 
-                entity.Property("UpdatedAt")
+                entity.Property("LastModifiedOn")
                       .HasColumnType("datetime2")
-                      .HasDefaultValueSql("GETUTCDATE()")
-                      .ValueGeneratedOnUpdate();
+                      .HasDefaultValueSql("GETUTCDATE()");
             }
         }
     }

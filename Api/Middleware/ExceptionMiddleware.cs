@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
-using Domain.Exceptions;
 using Infrastructure.Persistence.Context;
+using Shared.Exceptions;
 using Shared.Responses;
 using System.Net;
 using System.Text.Json;
@@ -17,13 +17,9 @@ namespace Infrastructure.Middleware
             {
                 await _next(context);
             }
-            catch (MultipleErrorResponseException ex)
+            catch (AppException ex)
             {
-                await HandleMultipleErrorResponseExceptionAsync(context, ex);
-            }
-            catch (ErrorResponseException ex)
-            {
-                await HandleErrorResponseExceptionAsync(context, ex);
+                await HandleAppExceptionAsync(context, ex);
             }
             catch (Exception ex)
             {
@@ -31,24 +27,12 @@ namespace Infrastructure.Middleware
             }
         }
 
-        private async Task HandleMultipleErrorResponseExceptionAsync(HttpContext context, MultipleErrorResponseException exception)
+        private async Task HandleAppExceptionAsync(HttpContext context, AppException exception)
         {
-            var response = new ApiErrorResponse(exception.StatusCode, exception.InternalError, null, exception.Messages);
+            var response = ApiErrorResponse.FromException(exception);
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = exception.StatusCode;
-
-            var result = JsonSerializer.Serialize(response);
-            await context.Response.WriteAsync(result);
-        }
-
-        private async Task HandleErrorResponseExceptionAsync(HttpContext context, ErrorResponseException exception)
-        {
-            var response = new ApiErrorResponse(exception.StatusCode, exception.InternalError, exception.Message);
-
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = exception.StatusCode;
-            var result = JsonSerializer.Serialize(response);
-            await context.Response.WriteAsync(result);
+            await context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }
 
         private static async Task HandleExceptionAsync(HttpContext context, Exception exception)

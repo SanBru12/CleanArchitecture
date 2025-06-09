@@ -2,8 +2,8 @@
 using Application.Interfaces.Repositories;
 using AutoMapper;
 using Domain.Entities;
-using Domain.Exceptions;
 using MediatR;
+using Shared.Exceptions;
 
 namespace Application.Handlers.Tenants
 {

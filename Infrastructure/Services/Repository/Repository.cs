@@ -15,7 +15,7 @@ namespace Infrastructure.Services.Repository
             _context=context;
         }
 
-        public async Task<T> GetByIdAsync(int id) => await _context.Set<T>().FindAsync(id) ?? default!;
+        public async Task<T> GetByIdAsync(long id) => await _context.Set<T>().FindAsync(id) ?? default!;
 
         public async Task<T> Add(T modelo)
         {

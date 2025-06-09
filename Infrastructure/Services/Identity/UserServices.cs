@@ -1,7 +1,7 @@
 ﻿using Application.Interfaces.Identity;
-using Domain.Exceptions;
 using Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Identity;
+using Shared.Exceptions;
 
 namespace Infrastructure.Services.Identity
 {

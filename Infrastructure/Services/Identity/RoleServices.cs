@@ -1,9 +1,9 @@
 ﻿using Application.Interfaces.Identity;
 using AutoMapper;
-using Domain.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models.Dtos.Identity.Roles;
+using Shared.Exceptions;
 
 namespace Infrastructure.Services.Identity
 {
