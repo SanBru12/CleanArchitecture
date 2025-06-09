@@ -3,7 +3,7 @@ using Application.Handlers.Tenants;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Models.Responses;
+using Shared.Responses;
 using System.Net;
 
 namespace Api.Controllers.Tenants

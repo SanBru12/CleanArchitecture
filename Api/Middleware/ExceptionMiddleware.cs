@@ -1,10 +1,7 @@
-﻿using Domain.Exceptions;
-using Infrastructure.Exceptions;
+﻿using Domain.Entities;
+using Domain.Exceptions;
 using Infrastructure.Persistence.Context;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Models.Models;
-using Models.Responses;
+using Shared.Responses;
 using System.Net;
 using System.Text.Json;
 
@@ -36,7 +33,7 @@ namespace Infrastructure.Middleware
 
         private async Task HandleMultipleErrorResponseExceptionAsync(HttpContext context, MultipleErrorResponseException exception)
         {
-            var response = new MultipleErrorResponse(exception.StatusCode, exception.InternalError, exception.Messages);
+            var response = new ApiErrorResponse(exception.StatusCode, exception.InternalError, null, exception.Messages);
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = exception.StatusCode;
 
@@ -46,7 +43,7 @@ namespace Infrastructure.Middleware
 
         private async Task HandleErrorResponseExceptionAsync(HttpContext context, ErrorResponseException exception)
         {
-            var response = new ErrorResponse(exception.StatusCode, exception.InternalError, exception.Message);
+            var response = new ApiErrorResponse(exception.StatusCode, exception.InternalError, exception.Message);
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = exception.StatusCode;
@@ -54,7 +51,7 @@ namespace Infrastructure.Middleware
             await context.Response.WriteAsync(result);
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             using var scope = context.RequestServices.CreateScope();
             try
@@ -86,7 +83,7 @@ namespace Infrastructure.Middleware
             responseContext.ContentType = "application/json";
             responseContext.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            var response = new ErrorResponse(500, exception.Message, "Ocurrio un error interno en el servidor.");
+            var response = new ApiErrorResponse(500, exception.Message, "Ocurrio un error interno en el servidor.");
             var result = JsonSerializer.Serialize(response);
             await context.Response.WriteAsync(result);
         }

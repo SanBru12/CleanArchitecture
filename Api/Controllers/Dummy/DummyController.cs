@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
-using Models.Responses;
+using Shared.Responses;
 using System.Net;
 
 namespace Api.Controllers.Dummy
@@ -22,7 +22,7 @@ namespace Api.Controllers.Dummy
         /// Genera un error de prueba para verificar el manejo de excepciones.
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="ErrorResponse"></exception>
+        /// <exception cref="ApiErrorResponse"></exception>
         [HttpGet("Error")]
         [ProducesResponseType(typeof(ApiErrorResponse), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ApiErrorResponse), (int)HttpStatusCode.InternalServerError)]

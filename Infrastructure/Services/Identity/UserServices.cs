@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces.Identity;
-using Infrastructure.Exceptions;
+using Domain.Exceptions;
 using Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Identity;
 
