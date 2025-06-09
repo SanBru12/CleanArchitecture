@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces.Repositories;
-using Data.Models;
+using Domain.Entities;
 using MediatR;
 
 namespace Application.Handlers.Tenants
@@ -17,16 +17,8 @@ namespace Application.Handlers.Tenants
 
         public async Task<int> Handle(CreateTenantRequest request, CancellationToken cancellationToken)
         {
-            //TODO: Replace for automapper
-            Tenant dbModel = new()
-            {
-                Name = request.Name,
-                Cuit = request.Cuit,
-                Active = request.Active
-            };
-
+            Tenant dbModel = new(request.Name, request.Cuit, request.Active);
             var result = await _context.Add(dbModel);
-
             return result.Id;
         }
     }

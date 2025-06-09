@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces.Repositories;
-using Data.Models;
-using Infrastructure.Exceptions;
+using Domain.Entities;
+using Domain.Exceptions;
 using MediatR;
 
 namespace Application.Handlers.Tenants

@@ -1,4 +1,4 @@
-﻿namespace Models.Models
+﻿namespace Domain.Entities
 {
     public class ErrorLog
     {

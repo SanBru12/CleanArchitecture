@@ -1,13 +1,13 @@
-﻿using Models.Entity;
+﻿using Domain.Common;
 
-namespace Data.Models
+namespace Domain.Entities
 {
-    public class Tenant : AuditableEntity
+    public class Tenant(string? name, string? cuit, bool? active) : AuditableEntity
     {
         public int Id { get; set; }
-        public string? Name { get; set; } = "";
-        public string? Cuit { get; set; } = "";
-        public bool? Active { get; set; } = true;
+        public string? Name { get; set; } = name ?? "";
+        public string? Cuit { get; set; } = cuit ?? "";
+        public bool? Active { get; set; } = active ?? false;
 
         public Tenant Update(string? name, string? cuit, bool? active)
         {

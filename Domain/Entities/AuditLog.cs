@@ -1,6 +1,4 @@
-﻿using Models.Entity;
-
-namespace Data.Models
+﻿namespace Domain.Entities
 {
     public class AuditLog
     {

@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{90629360-3EE9-4722-BE27-64276DFAA951}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{6B6AB361-EC8A-4BC4-9CE4-E622BFAF9E10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Models\Shared.csproj", "{6B6AB361-EC8A-4BC4-9CE4-E622BFAF9E10}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{2D100303-5CB6-441A-8A71-70B3E4321539}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{89F17683-97C9-4CF8-8F25-FF59EB4F0E44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{2D100303-5CB6-441A-8A71-70B3E4321539}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D100303-5CB6-441A-8A71-70B3E4321539}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D100303-5CB6-441A-8A71-70B3E4321539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89F17683-97C9-4CF8-8F25-FF59EB4F0E44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89F17683-97C9-4CF8-8F25-FF59EB4F0E44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89F17683-97C9-4CF8-8F25-FF59EB4F0E44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89F17683-97C9-4CF8-8F25-FF59EB4F0E44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E83DA850-0A71-4E7B-A307-AAF5536BE3C5}
 	EndGlobalSection
 EndGlobal

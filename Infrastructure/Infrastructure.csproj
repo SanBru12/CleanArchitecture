@@ -7,7 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="14.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.2" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
@@ -29,7 +28,15 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Application\Application.csproj" />
-		<ProjectReference Include="..\Models\Models.csproj" />
+		<ProjectReference Include="..\Models\Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Identity\Auth\" />
+	  <Folder Include="Identity\Configuration\" />
+	  <Folder Include="Identity\Role\" />
+	  <Folder Include="Identity\User\" />
+	  <Folder Include="Settings\" />
 	</ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
-﻿namespace Models.Responses
+﻿namespace Domain.Exceptions
 {
-    public class MultipleErrorResponse(int statusCode, string internalError, List<string>? messages = null)
+    public class MultipleErrorResponseException(int statusCode, string internalError, List<string>? messages = null) : Exception(internalError)
     {
         public int StatusCode { get; set; } = statusCode;
         public string InternalError { get; set; } = internalError;

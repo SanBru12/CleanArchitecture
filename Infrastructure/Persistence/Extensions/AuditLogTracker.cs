@@ -1,9 +1,8 @@
-﻿using Data.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
-using Models.Models;
 using System.Text.Json;
+using Domain.Entities;
 
 namespace Infrastructure.Persistence.Extensions
 {

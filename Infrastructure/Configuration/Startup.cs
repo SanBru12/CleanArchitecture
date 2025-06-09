@@ -1,5 +1,5 @@
-﻿using Infrastructure.ApplicationSettings.Extensions;
-using Infrastructure.ApplicationSettings.Settings;
+﻿using Infrastructure.Configuration.Extensions;
+using Infrastructure.Configuration.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

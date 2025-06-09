@@ -1,11 +1,10 @@
-﻿using Application.Handlers.Tenants;
+﻿using Application.Common.Tenant;
 using AutoMapper;
-using Data.Models;
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Models.Dtos.Identity.Roles;
-using Models.Dtos.Tenant;
 
-namespace Api.Infrastructure.AutoMapper
+namespace Infrastructure.AutoMapper
 {
     public class AutoMapperProfile : Profile
     {

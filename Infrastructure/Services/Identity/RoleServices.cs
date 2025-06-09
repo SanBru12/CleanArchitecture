@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces.Identity;
 using AutoMapper;
-using Infrastructure.Exceptions;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models.Dtos.Identity.Roles;

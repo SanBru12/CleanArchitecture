@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Models.Entity;
+﻿using Domain.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Extensions
 {

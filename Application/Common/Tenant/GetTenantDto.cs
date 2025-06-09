@@ -1,4 +1,4 @@
-﻿namespace Models.Dtos.Tenant
+﻿namespace Application.Common.Tenant
 {
     public class GetTenantDto
     {

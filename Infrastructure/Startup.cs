@@ -1,11 +1,11 @@
 ﻿using Infrastructure.AddApplicationSettings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Infrastructure.ApplicationSettings.Extensions;
+using Infrastructure.Configuration.Extensions;
 using Application;
 using Infrastructure.Services;
-using Api.Infrastructure.AutoMapper;
-using Infrastructure.Persistencia;
+using Infrastructure.AutoMapper;
+using Infrastructure.Persistence;
 
 namespace Infrastructure
 {

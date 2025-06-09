@@ -12,8 +12,6 @@ namespace Application
                 x.RegisterServicesFromAssembly(typeof(Startup).Assembly);
             });
 
-
-
             return services;
         }
     }

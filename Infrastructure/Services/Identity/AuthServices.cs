@@ -1,5 +1,4 @@
 ﻿using Application.Interfaces.Identity;
-using Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Services.Identity

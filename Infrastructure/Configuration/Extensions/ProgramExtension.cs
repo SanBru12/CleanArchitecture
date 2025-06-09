@@ -1,12 +1,7 @@
-﻿using Infrastructure.ApplicationSettings.Settings;
+﻿using Infrastructure.Configuration.Settings;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Infrastructure.ApplicationSettings.Extensions
+namespace Infrastructure.Configuration.Extensions
 {
     public class ProgramExtension
     {

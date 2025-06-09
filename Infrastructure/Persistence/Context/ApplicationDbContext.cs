@@ -2,13 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
-using Models.Entity;
-using Data.Models;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Models.Models;
 using Infrastructure.Persistence.Extensions;
 using Infrastructure.Persistence.Configuration;
+using Domain.Entities;
 
 namespace Infrastructure.Persistence.Context
 {

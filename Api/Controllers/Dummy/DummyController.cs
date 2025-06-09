@@ -1,4 +1,4 @@
-﻿using Infrastructure.ApplicationSettings.Settings;
+﻿using Infrastructure.Configuration.Settings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
@@ -24,8 +24,8 @@ namespace Api.Controllers.Dummy
         /// <returns></returns>
         /// <exception cref="ErrorResponse"></exception>
         [HttpGet("Error")]
-        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ApiErrorResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ApiErrorResponse), (int)HttpStatusCode.InternalServerError)]
         public IActionResult GenerarError()
         {
             var x = 1;
@@ -36,8 +36,8 @@ namespace Api.Controllers.Dummy
 
 
         [HttpGet("ConectionSQL")]
-        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ApiErrorResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ApiErrorResponse), (int)HttpStatusCode.InternalServerError)]
         public IActionResult ConectionSQL()
         {
             using var connection = new SqlConnection(connectionStringsSettings.Value.ConectionSQL);

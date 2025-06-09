@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Exceptions
+﻿namespace Domain.Exceptions
 {
     public class ErrorResponseException(int statusCode, string internalError, string messages) : Exception(messages)
     {

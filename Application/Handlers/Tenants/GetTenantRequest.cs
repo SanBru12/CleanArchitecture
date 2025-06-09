@@ -1,9 +1,9 @@
-﻿using Application.Interfaces.Repositories;
+﻿using Application.Common.Tenant;
+using Application.Interfaces.Repositories;
 using AutoMapper;
-using Data.Models;
-using Infrastructure.Exceptions;
+using Domain.Entities;
+using Domain.Exceptions;
 using MediatR;
-using Models.Dtos.Tenant;
 
 namespace Application.Handlers.Tenants
 {

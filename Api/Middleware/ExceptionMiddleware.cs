@@ -1,4 +1,5 @@
-﻿using Infrastructure.Exceptions;
+﻿using Domain.Exceptions;
+using Infrastructure.Exceptions;
 using Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;

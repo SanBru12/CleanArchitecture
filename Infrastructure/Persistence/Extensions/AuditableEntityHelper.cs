@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
-using Models.Entity;
 using System.Security.Claims;
+using Domain.Common;
 
 namespace Infrastructure.Persistence.Extensions
 {

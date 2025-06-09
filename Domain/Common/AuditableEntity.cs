@@ -1,4 +1,4 @@
-﻿namespace Models.Entity
+﻿namespace Domain.Common
 {
     public class AuditableEntity
     {
