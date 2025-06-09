@@ -1,7 +1,7 @@
 ﻿using Application.Interfaces.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace Infrastructure.Services.Identity
+namespace Infrastructure.Identity.Auth
 {
     public class AuthServices(SignInManager<IdentityUser> signInManager) : IAuth
     {

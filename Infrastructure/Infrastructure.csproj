@@ -32,10 +32,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Identity\Auth\" />
 	  <Folder Include="Identity\Configuration\" />
-	  <Folder Include="Identity\Role\" />
-	  <Folder Include="Identity\User\" />
+	  <Folder Include="Services\" />
 	  <Folder Include="Settings\" />
 	</ItemGroup>
 

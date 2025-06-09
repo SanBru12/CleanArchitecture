@@ -3,9 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Configuration.Extensions;
 using Application;
-using Infrastructure.Services;
 using Infrastructure.AutoMapper;
 using Infrastructure.Persistence;
+using Infrastructure.Repository;
 
 namespace Infrastructure
 {

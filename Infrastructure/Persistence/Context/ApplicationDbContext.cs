@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
-using Infrastructure.Persistence.Extensions;
-using Infrastructure.Persistence.Configuration;
+﻿using Domain.Common.Contracts;
 using Domain.Entities;
+using Infrastructure.Persistence.Configuration;
+using Infrastructure.Persistence.Extensions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Reflection.Emit;
 
 namespace Infrastructure.Persistence.Context
 {
@@ -26,6 +29,20 @@ namespace Infrastructure.Persistence.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
+            builder.ConfigureAuditableEntities();
+
+            builder.Ignore<DomainEvent>();
+
+            foreach (var entityType in builder.Model.GetEntityTypes())
+            {
+                if (typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
+                {
+                    builder.Entity(entityType.ClrType).Ignore("DomainEvents");
+                }
+            }
 
             builder.Entity<AuditLog>().ToTable("AuditLogs", SchemaNames.System);
             builder.Entity<ErrorLog>().ToTable("ErrorLogs", SchemaNames.System);

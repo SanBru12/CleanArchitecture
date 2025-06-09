@@ -1,10 +1,10 @@
 ﻿using Application.Interfaces.Repositories;
-using Infrastructure.Services.Repository;
+using Infrastructure.Repository.Base;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace Infrastructure.Services
+namespace Infrastructure.Repository
 {
     public static class Startup
     {

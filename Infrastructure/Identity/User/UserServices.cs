@@ -3,7 +3,7 @@ using Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Identity;
 using Shared.Exceptions;
 
-namespace Infrastructure.Services.Identity
+namespace Infrastructure.Identity.User
 {
     public class UserServices(UserManager<IdentityUser> userManager, ApplicationDbContext appDbContext) : IUser
     {

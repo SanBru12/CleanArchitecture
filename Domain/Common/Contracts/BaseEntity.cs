@@ -1,4 +1,5 @@
-﻿using DefaultIdType = System.Guid;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using DefaultIdType = System.Guid;
 
 namespace Domain.Common.Contracts
 {
@@ -11,6 +12,7 @@ namespace Domain.Common.Contracts
     {
         public TId Id { get; protected set; } = default!;
 
+        [NotMapped]
         public List<DomainEvent> DomainEvents { get; } = new();
     }
 }

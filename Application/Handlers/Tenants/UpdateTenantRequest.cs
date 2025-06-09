@@ -23,7 +23,6 @@ namespace Application.Handlers.Tenants
             _context = context;
         }
      
-
         public async Task<long> Handle(UpdateTenantRequest request, CancellationToken cancellationToken)
         {
             //TODO: Replace for automapper

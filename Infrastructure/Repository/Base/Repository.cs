@@ -1,18 +1,30 @@
 ﻿using Application.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
+using Infrastructure.Repository.Extensions;
+using Infrastructure.Repository.Search;
 using Microsoft.EntityFrameworkCore;
 using Models.Responses;
 using System.Linq.Expressions;
 
-namespace Infrastructure.Services.Repository
+namespace Infrastructure.Repository.Base
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T>(ApplicationDbContext context) : IRepository<T> where T : class
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context = context;
 
-        public Repository(ApplicationDbContext context)
+        public async Task<IEnumerable<T>> SearchAsync(SearchQuery request)
         {
-            _context=context;
+            IQueryable<T> query = _context.Set<T>();
+
+            query = RepositoryExtensions<T>.ApplyIncludes(query, request.Includes);
+
+            query = RepositoryExtensions<T>.ApplyFilter(query, request.Filter);
+
+            query = RepositoryExtensions<T>.ApplyOrder(query, request.OrderBy, request.OrderByDirection);
+
+            query = RepositoryExtensions<T>.ApplyPagination(query, request.Skip, request.Take);
+
+            return await query.ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(long id) => await _context.Set<T>().FindAsync(id) ?? default!;

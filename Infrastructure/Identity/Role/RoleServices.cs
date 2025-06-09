@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Models.Dtos.Identity.Roles;
 using Shared.Exceptions;
 
-namespace Infrastructure.Services.Identity
+namespace Infrastructure.Identity.Role
 {
     public class RoleServices(RoleManager<IdentityRole> roleManager, IMapper mapper) : IRole
     {
